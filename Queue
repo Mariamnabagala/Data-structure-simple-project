@@ -1,0 +1,22 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class WaitingList {
+    private Queue<Student> waitingQueue;
+
+    WaitingList() {
+        waitingQueue = new LinkedList<>();
+    }
+
+    public void addToWaitingList(Student student) {
+        waitingQueue.add(student);
+    }
+
+    public Student allocateFromWaitingList() {
+        return waitingQueue.poll();
+    }
+
+    public void displayWaitingList() {
+        System.out.println("Waiting List: " + waitingQueue);
+    }
+}
