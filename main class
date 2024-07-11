@@ -1,0 +1,37 @@
+public class HostelManagementSystem {
+    public static void main(String[] args) {
+        StudentLinkedList studentList = new StudentLinkedList();
+        RoomManagement roomManagement = new RoomManagement(10);  // Assume 10 rooms
+        WaitingList waitingList = new WaitingList();
+
+        // Adding Students
+        Student s1 = new Student("Alice", 1);
+        Student s2 = new Student("Bob", 2);
+        Student s3 = new Student("Charlie", 3);
+
+        studentList.addStudent(s1);
+        studentList.addStudent(s2);
+        studentList.addStudent(s3);
+
+        // Display Students
+        System.out.println("Student List:");
+        studentList.displayStudents();
+
+        // Room Allocation
+        System.out.println("\nRoom Allocation:");
+        Integer room1 = roomManagement.allocateRoom();
+        Integer room2 = roomManagement.allocateRoom();
+        System.out.println("Room allocated to Alice: " + room1);
+        System.out.println("Room allocated to Bob: " + room2);
+
+        // Deallocate Room
+        roomManagement.deallocateRoom(room1);
+        System.out.println("\nAfter deallocating Room " + room1 + ":");
+        roomManagement.displayAvailableRooms();
+
+        // Waiting List
+        waitingList.addToWaitingList(s3);
+        System.out.println("\nWaiting List:");
+        waitingList.displayWaitingList();
+    }
+}
