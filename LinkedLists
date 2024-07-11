@@ -1,0 +1,52 @@
+class StudentLinkedList {
+    private Node head;
+
+    private class Node {
+        Student student;
+        Node next;
+
+        Node(Student student) {
+            this.student = student;
+            this.next = null;
+        }
+    }
+
+    public void addStudent(Student student) {
+        Node newNode = new Node(student);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    public void removeStudent(int id) {
+        if (head == null) return;
+
+        if (head.student.id == id) {
+            head = head.next;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null && temp.next.student.id != id) {
+            temp = temp.next;
+        }
+
+        if (temp.next != null) {
+            temp.next = temp.next.next;
+        }
+    }
+
+    public void displayStudents() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.student);
+            temp = temp.next;
+        }
+    }
+}
