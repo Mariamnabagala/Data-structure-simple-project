@@ -1,0 +1,28 @@
+import java.util.Stack;
+
+class RoomManagement {
+    private Stack<Integer> availableRooms;
+
+    RoomManagement(int numberOfRooms) {
+        availableRooms = new Stack<>();
+        for (int i = numberOfRooms; i > 0; i--) {
+            availableRooms.push(i);
+        }
+    }
+
+    public Integer allocateRoom() {
+        if (availableRooms.isEmpty()) {
+            System.out.println("No available rooms!");
+            return null;
+        }
+        return availableRooms.pop();
+    }
+
+    public void deallocateRoom(int roomNumber) {
+        availableRooms.push(roomNumber);
+    }
+
+    public void displayAvailableRooms() {
+        System.out.println("Available Rooms: " + availableRooms);
+    }
+}
