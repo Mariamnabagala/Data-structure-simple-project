@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 // Student Class
 class Student {
@@ -144,15 +145,19 @@ public class HostelManagementSystem {
         StudentLinkedList studentList = new StudentLinkedList();
         RoomManagement roomManagement = new RoomManagement(10);  // Assume 10 rooms
         WaitingList waitingList = new WaitingList();
+        Scanner scanner = new Scanner(System.in);
 
-        // Adding Students
-        Student s1 = new Student("Alice", 1);
-        Student s2 = new Student("Bob", 2);
-        Student s3 = new Student("Charlie", 3);
+        // Adding Students through user input
+        System.out.println("Enter the number of students to add:");
+        int numOfStudents = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
 
-        studentList.addStudent(s1);
-        studentList.addStudent(s2);
-        studentList.addStudent(s3);
+        for (int i = 1; i <= numOfStudents; i++) {
+            System.out.println("Enter name for student " + i + ":");
+            String name = scanner.nextLine();
+            Student student = new Student(name, i);
+            studentList.addStudent(student);
+        }
 
         // Display Students
         System.out.println("Student List:");
@@ -162,17 +167,30 @@ public class HostelManagementSystem {
         System.out.println("\nRoom Allocation:");
         Integer room1 = roomManagement.allocateRoom();
         Integer room2 = roomManagement.allocateRoom();
-        System.out.println("Room allocated to Alice: " + room1);
-        System.out.println("Room allocated to Bob: " + room2);
+        System.out.println("Room allocated to Student 1: " + room1);
+        System.out.println("Room allocated to Student 2: " + room2);
 
         // Deallocate Room
         roomManagement.deallocateRoom(room1);
         System.out.println("\nAfter deallocating Room " + room1 + ":");
         roomManagement.displayAvailableRooms();
 
-        // Waiting List
-        waitingList.addToWaitingList(s3);
+        // Adding to Waiting List through user input
+        System.out.println("Enter the number of students to add to the waiting list:");
+        int numOfWaitingStudents = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+
+        for (int i = 1; i <= numOfWaitingStudents; i++) {
+            System.out.println("Enter name for waiting student " + i + ":");
+            String name = scanner.nextLine();
+            Student student = new Student(name, numOfStudents + i);
+            waitingList.addToWaitingList(student);
+        }
+
+        // Display Waiting List
         System.out.println("\nWaiting List:");
         waitingList.displayWaitingList();
+
+        scanner.close();
     }
 }
